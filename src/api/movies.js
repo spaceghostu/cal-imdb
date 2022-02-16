@@ -1,7 +1,9 @@
+import { mockResponse } from './mockResponse';
+
 const API_KEY = 'moHSvsXgXRmshqzIK6YfwhVczx3ap1xDEahjsnFJ11Fr40OwpT'
 const BASE_URL = 'https://movie-database-imdb-alternative.p.rapidapi.com/'
 
-export const searchMovies = (search, page = '1') => {
+export async function searchMovies(search, page = '1') {
 
     const params = { s: search, r: 'json', page }
     const url = new URL(BASE_URL)
@@ -18,5 +20,10 @@ export const searchMovies = (search, page = '1') => {
         }
     };
 
-    return fetch(url, options)
+    if (process.env.NODE_ENV !== 'production') {
+        return mockResponse()
+    }
+
+    const res = await fetch(url, options)
+    return res.json()
 }
