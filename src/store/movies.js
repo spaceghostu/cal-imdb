@@ -18,11 +18,10 @@ export const moviesStore = createStore({
     setError: action((state, payload) => {
         state.error = payload
     }),
-    searchMovies: thunk(async (actions, payload) => {
+    search: thunk(async (actions, payload) => {
         actions.setPending(true)
         try {
-            const res = await searchMovies(payload);
-            const { Search, totalResults } = await res.json();
+            const { Search, totalResults } = await searchMovies(payload)
             actions.setMovies(Search)
             actions.setTotalResults(totalResults)
             actions.setPending(false)
