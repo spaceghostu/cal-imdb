@@ -3,6 +3,7 @@ import { action, useLocalStore, useStoreActions } from 'easy-peasy';
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default function Search() {
     const searchMovies = useStoreActions(actions => actions.search);
@@ -16,7 +17,9 @@ export default function Search() {
         <>
             <InputGroup>
                 <Form.Control onChange={actions.setSearch} type="text" placeholder="Search..." />
-                <Button onClick={() => searchMovies(state.search)}>Search</Button>
+                <LinkContainer to="/">
+                    <Button onClick={() => searchMovies(state.search)}>Search</Button>
+                </LinkContainer>
             </InputGroup>
         </>
     )
