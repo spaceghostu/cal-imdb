@@ -7,22 +7,19 @@ import { LinkContainer } from 'react-router-bootstrap';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 export default function Search() {
-    const searchMovies = useStoreActions(actions => actions.movies.search);
-    const setSearchQuery = useStoreActions(actions => actions.app.setSearchQuery);
-    const pageNumber = useStoreState(state => state.app.pageNumber);
-    const searchQuery = useStoreState(state => state.app.searchQuery);
+    const setSearchParams = useStoreActions(actions => actions.setSearchParams);
+    const setSearchQuery = useStoreActions(actions => actions.setSearchQuery);
+    const searchQuery = useStoreState(state => state.searchQuery);
     const setSearchQueryDebounced = AwesomeDebouncePromise(
         setSearchQuery,
         500,
     );
     return (
-        <>
-            <InputGroup>
-                <Form.Control onChange={setSearchQueryDebounced} type="text" placeholder="Search..." />
-                <LinkContainer to="/">
-                    <Button onClick={() => searchMovies({ query: searchQuery, page: pageNumber })}>Search</Button>
-                </LinkContainer>
-            </InputGroup>
-        </>
+        <InputGroup>
+            <Form.Control onChange={event => setSearchQueryDebounced(event.target.value)} type="text" placeholder="Search..." />
+            <LinkContainer to="/">
+                <Button onClick={() => setSearchParams({ searchQuery, pageNumber: 1 })}>Search</Button>
+            </LinkContainer>
+        </InputGroup>
     )
 }

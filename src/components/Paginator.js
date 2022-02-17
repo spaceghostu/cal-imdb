@@ -6,10 +6,9 @@ import Row from 'react-bootstrap/Row';
 import { useLocalStore, action } from 'easy-peasy';
 
 export default function Paginator({ pageCount }) {
-    const pageNumber = useStoreState(state => state.app.pageNumber)
-    const searchQuery = useStoreState(state => state.app.searchQuery)
-    const setPageNumber = useStoreActions(action => action.app.setPageNumber)
-    const searchMovies = useStoreActions(action => action.movies.search)
+    const pageNumber = useStoreState(state => state.pageNumber)
+    const searchQuery = useStoreState(state => state.searchQuery)
+    const setSearchParams = useStoreActions(action => action.setSearchParams)
 
     const [state, actions] = useLocalStore(() => ({
         pageRange: [0, 0],
@@ -34,9 +33,8 @@ export default function Paginator({ pageCount }) {
         actions.setPageRange({ pageNumber, pageCount })
     }, [actions, pageNumber, pageCount])
 
-    const onPageClick = (page) => {
-        setPageNumber(page)
-        searchMovies({ query: searchQuery, page })
+    const onPageClick = (pageNumber) => {
+        setSearchParams({ searchQuery, pageNumber })
     }
 
     let pages = [];
