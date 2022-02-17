@@ -21,7 +21,8 @@ const store = createStore({
     }),
     movies: moviesModel,
     favorites: persist(favoritesModel, {
-        allow: ['items']
+        allow: ['items'],
+        storage: 'localStorage'
     }),
 });
 
