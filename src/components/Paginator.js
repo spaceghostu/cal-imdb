@@ -4,6 +4,7 @@ import Pagination from 'react-bootstrap/Pagination'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useLocalStore, action } from 'easy-peasy';
+import styled from 'styled-components';
 
 export default function Paginator({ pageCount }) {
     const pageNumber = useStoreState(state => state.pageNumber)
@@ -40,12 +41,12 @@ export default function Paginator({ pageCount }) {
     let pages = [];
     for (let i = 1; i <= pageCount; i++) {
         pages.push(
-            <Pagination.Item
+            <StyledPaginationItem
                 key={i}
                 active={i === pageNumber}
                 onClick={() => onPageClick(i)}>
                 {i}
-            </Pagination.Item>,
+            </StyledPaginationItem>,
         );
 
     }
@@ -53,17 +54,51 @@ export default function Paginator({ pageCount }) {
         <Container className="mt-4">
             <Row>
                 <Pagination className="justify-content-md-center">
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    {state.showEllipsis[0] && <Pagination.Ellipsis />}
+                    {state.showEllipsis[0] && (
+                        <>
+                            <StyledPaginationItem
+                                active={pageNumber === 1}
+                                onClick={() => onPageClick(1)}>
+                                1
+                            </StyledPaginationItem>
+                            <StyledPaginationItem>...</StyledPaginationItem>
+                        </>
+                    )}
 
                     {pages.slice(...state.pageRange)}
 
-                    {state.showEllipsis[1] && <Pagination.Ellipsis />}
-                    <Pagination.Next />
-                    <Pagination.Last />
+                    {state.showEllipsis[0] && (
+                        <>
+                            <StyledPaginationItem>...</StyledPaginationItem>
+                            <StyledPaginationItem
+                                active={pageNumber === pageCount}
+                                onClick={() => onPageClick(pageCount)}>
+                                {pageCount}
+                            </StyledPaginationItem>
+                        </>
+                    )}
                 </Pagination>
             </Row>
         </Container>
     )
 }
+
+
+const StyledPaginationItem = styled(Pagination.Item)`
+    a {
+        background-color: #000;
+        border: 1px solid #4e4e4e;
+        color: var(--bs-primary);
+        &:hover {
+            background-color: #1a1a1a !important;
+            border-color: #5d5d5e !important;
+            color: var(--bs-primary);
+        }
+    }
+    &.active .page-link {
+        background-color: var(--bs-primary);
+        color: black;
+        border: 1px solid var(--bs-primary);
+
+    }
+`

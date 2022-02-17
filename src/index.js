@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { StoreProvider } from 'easy-peasy';
 import store from './store/store';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom.scss';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -6,7 +6,7 @@ export const mockResponse = () => new Promise((resolve, reject) => {
             "totalResults": "1884",
             "Response": "True"
         });
-    }, 300);
+    }, 1000);
 });
 
 
