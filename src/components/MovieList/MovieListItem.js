@@ -6,8 +6,8 @@ import FavoriteButton from '../FavoriteButton';
 import { useStoreActions } from 'easy-peasy';
 
 export default function MovieListItem({ movie, isFavorite }) {
-    const addToFavorites = useStoreActions(actions => actions.addToFavorites);
-    const removeFromFavorites = useStoreActions(actions => actions.removeFromFavorites);
+    const addToFavorites = useStoreActions(actions => actions.favorites.add);
+    const removeFromFavorites = useStoreActions(actions => actions.favorites.remove);
     const toggleFavorite = () => {
         if (isFavorite) removeFromFavorites(movie.imdbID);
         else addToFavorites(movie);

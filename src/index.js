@@ -5,12 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { StoreProvider } from 'easy-peasy';
-import { moviesStore } from './store/movies';
+import store from './store/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreProvider store={moviesStore}>
+    <StoreProvider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

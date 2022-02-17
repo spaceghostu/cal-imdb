@@ -4,10 +4,7 @@ import MovieListItem from './MovieListItem';
 import { useStoreState } from 'easy-peasy';
 
 export default function MovieList({ movies }) {
-    const favorites = useStoreState(state => state.favorites).map(f => f.imdbID)
-    useEffect(() => {
-        console.log(favorites)
-    })
+    const favorites = useStoreState(state => state.favorites.ids)
     return (
         <>
             <Col md={{ span: 8, offset: 2 }}>
