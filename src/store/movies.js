@@ -21,7 +21,7 @@ const moviesModel = {
     search: thunk(async (actions, payload) => {
         actions.setPending(true)
         try {
-            const { Search, totalResults } = await searchMovies(payload)
+            const { Search, totalResults } = await searchMovies(payload.query, payload.page)
             actions.set(Search)
             actions.setTotalResults(totalResults)
             actions.setPending(false)

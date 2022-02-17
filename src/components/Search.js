@@ -9,7 +9,8 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 export default function Search() {
     const searchMovies = useStoreActions(actions => actions.movies.search);
     const setSearchQuery = useStoreActions(actions => actions.app.setSearchQuery);
-    const searchQuery = useStoreState(actions => actions.app.searchQuery);
+    const pageNumber = useStoreState(state => state.app.pageNumber);
+    const searchQuery = useStoreState(state => state.app.searchQuery);
     const setSearchQueryDebounced = AwesomeDebouncePromise(
         setSearchQuery,
         500,
@@ -19,7 +20,7 @@ export default function Search() {
             <InputGroup>
                 <Form.Control onChange={setSearchQueryDebounced} type="text" placeholder="Search..." />
                 <LinkContainer to="/">
-                    <Button onClick={() => searchMovies(searchQuery)}>Search</Button>
+                    <Button onClick={() => searchMovies({ query: searchQuery, page: pageNumber })}>Search</Button>
                 </LinkContainer>
             </InputGroup>
         </>

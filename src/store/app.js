@@ -2,7 +2,7 @@ import { action } from 'easy-peasy';
 
 const appModel = {
     searchQuery: '',
-    pageNumber: 0,
+    pageNumber: 1,
     setSearchQuery: action((state, payload) => {
         state.searchQuery = payload
     }),
