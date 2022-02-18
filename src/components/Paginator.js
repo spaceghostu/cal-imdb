@@ -67,7 +67,7 @@ export default function Paginator({ pageCount }) {
 
                     {pages.slice(...state.pageRange)}
 
-                    {state.showEllipsis[0] && (
+                    {state.showEllipsis[1] && (
                         <>
                             <StyledPaginationItem>...</StyledPaginationItem>
                             <StyledPaginationItem
