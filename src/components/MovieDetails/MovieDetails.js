@@ -9,6 +9,8 @@ import Image from 'react-bootstrap/Image';
 import CreditsList from './CreditsList';
 import { capitalize } from '../../util/util';
 import { StarFill } from 'react-bootstrap-icons';
+import FavoriteButton from '../FavoriteButton';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 export default function MovieDetails({ movie }) {
     const credits = {
@@ -16,11 +18,23 @@ export default function MovieDetails({ movie }) {
         'Writers': movie.Writer.split(','),
         'Actors': movie.Actors.split(','),
     }
+    const favorites = useStoreState(state => state.favorites.ids)
+    const isFavorite = favorites.includes(movie.imdbID)
+    const addToFavorites = useStoreActions(actions => actions.favorites.add);
+    const removeFromFavorites = useStoreActions(actions => actions.favorites.remove);
+    const toggleFavorite = event => {
+        event.stopPropagation();
+        if (isFavorite) removeFromFavorites(movie.imdbID);
+        else addToFavorites(movie);
+    }
     return (
         <>
             <Header>
                 <DetailsSection>
-                    <Title>{movie.Title}</Title>
+                    <Title>
+                        <span>{movie.Title}</span>
+                        <FavoriteButton customOnClick={toggleFavorite} active={isFavorite} large />
+                    </Title>
                     <DetailsList details={[capitalize(movie.Type), movie.Year, movie.Rated, movie.Runtime]} />
                 </DetailsSection>
                 <RatingsSection>
@@ -29,15 +43,15 @@ export default function MovieDetails({ movie }) {
             </Header>
             <SubHeader>
                 <GenrePills genres={movie.Genre.split(',')} />
-                <Awards>
+                {movie.Awards !== 'N/A' && <Awards>
                     <StarIcon />
                     {movie.Awards}
-                </Awards>
+                </Awards>}
             </SubHeader>
             <Row>
                 <Poster src={movie.Poster} />
                 <Col>
-                    <Plot>{movie.Plot}</Plot>
+                    <Plot>{movie.plot !== 'N/A' ? movie.Plot : `Unfortunately there is no plot information for this ${movie.Type}.`}</Plot>
                     <CreditsList credits={credits} />
                 </Col>
             </Row>
@@ -50,6 +64,12 @@ const Title = styled.h1`
     color: white;
     font-weight: normal;
     font-size: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+        margin-left: 10px;
+    }
 `
 
 const Header = styled(Row)`

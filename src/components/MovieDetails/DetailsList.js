@@ -4,7 +4,9 @@ import styled from 'styled-components'
 export default function DetailsList({ details }) {
     return (
         <DetailsUl>
-            {details.map((detail, index) => <DetailsLi key={index}>{detail}</DetailsLi>)}
+            {details
+                .filter(detail => detail !== 'N/A')
+                .map((detail, index) => <DetailsLi key={index}>{detail}</DetailsLi>)}
         </DetailsUl>
     )
 }

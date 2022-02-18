@@ -8,6 +8,8 @@ import { StoreProvider } from 'easy-peasy';
 import store from './store/store';
 import './custom.scss';
 
+document.title = "calMDB"
+
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={store}>

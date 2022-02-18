@@ -15,21 +15,19 @@ export default function Ratings({ ratings }) {
     return (
         <StyledContainer>
             {ratings.map((rating, index) => (
-                <Col key={index}>
+                <Rating key={index}>
                     <RowNoWrap>
                         <Logo src={ratingSourceLogos[rating.Source]} />
                         <RatingValue value={rating.Value} />
                     </RowNoWrap>
-                </Col>
+                </Rating>
             ))}
         </StyledContainer>
     )
 }
 
 const StyledContainer = styled(Row)`
-    max-width: 385px;
-    flex-wrap: nowrap;
-    margin-left: auto;
+    justify-content: flex-end;
 `
 
 const RowNoWrap = styled(Row)`
@@ -42,4 +40,8 @@ const Logo = styled(Image)`
     max-height: 30px;
     width: auto;
     height: auto;
+`
+
+const Rating = styled(Col)`
+    flex-grow: 0;
 `

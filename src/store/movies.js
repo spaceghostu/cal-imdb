@@ -23,6 +23,7 @@ const moviesModel = {
         try {
             const { Search, totalResults } = await searchMovies(payload.searchQuery, payload.pageNumber)
             actions.set(Search)
+            document.title = 'Search' + payload.searchQuery
             actions.setTotalResults(totalResults)
             actions.setPending(false)
         } catch (error) {

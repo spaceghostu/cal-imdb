@@ -2,9 +2,10 @@ import React from 'react'
 import { HeartFill, Heart } from 'react-bootstrap-icons';
 import styled, { css } from 'styled-components';
 
-export default function FavoriteButton({ active, customOnClick }) {
+export default function FavoriteButton({ active, customOnClick, large }) {
     return (
         <Container
+            large={large}
             active={active}
             onClick={customOnClick}>
             {active ? <HeartFill /> : <Heart />}
@@ -15,9 +16,13 @@ export default function FavoriteButton({ active, customOnClick }) {
 
 
 const Container = styled.div`
-    margin-left: auto;
-    margin-right: 10px;
-    font-size: 20px;
+    ${props => props.large ? `
+        font-size: 30px;
+    ` : `
+        margin-left: auto;
+        margin-right: 10px;
+        font-size: 20px;
+    `}
     cursor: pointer;
     ${(props) => props.active && css`color: #ff5151;`}
     &:hover {

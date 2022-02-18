@@ -11,7 +11,7 @@ export default function Search() {
     return (
         <InputGroup>
             <Form.Control onChange={event => setInputValue(event.target.value)} type="text" placeholder="Search..." style={{ color: 'black' }} />
-            <LinkContainer to="/">
+            <LinkContainer to="/search">
                 <Button onClick={() => setSearchParams({ searchQuery: inputValue, pageNumber: 1 })}>Search</Button>
             </LinkContainer>
         </InputGroup>
