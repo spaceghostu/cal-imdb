@@ -10,7 +10,7 @@ export default function Search() {
     const [inputValue, setInputValue] = useState()
     return (
         <InputGroup>
-            <Form.Control onChange={event => setInputValue(event.target.value)} type="text" placeholder="Search..." />
+            <Form.Control onChange={event => setInputValue(event.target.value)} type="text" placeholder="Search..." style={{ color: 'black' }} />
             <LinkContainer to="/">
                 <Button onClick={() => setSearchParams({ searchQuery: inputValue, pageNumber: 1 })}>Search</Button>
             </LinkContainer>

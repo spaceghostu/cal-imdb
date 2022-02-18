@@ -1,6 +1,7 @@
 import { action, createStore, persist, thunk } from 'easy-peasy';
 import moviesModel from './movies'
 import favoritesModel from './favorites'
+import movieDetailsModel from './movieDetails';
 
 const store = createStore(
     persist({
@@ -25,6 +26,7 @@ const store = createStore(
             actions.movies.search({ searchQuery, pageNumber })
         }),
         movies: moviesModel,
+        movieDetails: movieDetailsModel,
         favorites: persist(favoritesModel, {
             allow: ['items'],
             storage: 'localStorage'

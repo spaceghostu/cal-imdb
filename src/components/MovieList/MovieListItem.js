@@ -4,25 +4,29 @@ import styled from 'styled-components';
 import { capitalize } from '../../util/util'
 import FavoriteButton from '../FavoriteButton';
 import { useStoreActions } from 'easy-peasy';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default function MovieListItem({ movie, isFavorite }) {
     const addToFavorites = useStoreActions(actions => actions.favorites.add);
     const removeFromFavorites = useStoreActions(actions => actions.favorites.remove);
-    const toggleFavorite = () => {
+    const toggleFavorite = event => {
+        event.stopPropagation();
         if (isFavorite) removeFromFavorites(movie.imdbID);
         else addToFavorites(movie);
     }
     return (
-        <ItemContainer>
-            <Image fluid={true} src={movie.Poster} />
-            <Details>
-                <Title>{movie.Title}</Title>
-                <Year>{movie.Year}</Year>
-                <Type>{capitalize(movie.Type)}</Type>
-            </Details>
-            {/* for some reason onCLick doesn't work, using customOnCLick workaround */}
-            <FavoriteButton customOnClick={() => toggleFavorite()} active={isFavorite} />
-        </ItemContainer>
+        <LinkContainer to={`/details/${movie.imdbID}`}>
+            <ItemContainer>
+                <Image fluid={true} src={movie.Poster} />
+                <Details>
+                    <Title>{movie.Title}</Title>
+                    <Year>{movie.Year}</Year>
+                    <Type>{capitalize(movie.Type)}</Type>
+                </Details>
+                {/* for some reason onCLick doesn't work, using customOnCLick workaround */}
+                <FavoriteButton customOnClick={toggleFavorite} active={isFavorite} />
+            </ItemContainer>
+        </LinkContainer>
     )
 }
 

@@ -3,6 +3,7 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 import styled from 'styled-components'
 import FavoriteButton from '../FavoriteButton'
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default function MovieCardItem({ movie, isFavorite }) {
     const addToFavorites = useStoreActions(actions => actions.favorites.add);
@@ -12,19 +13,21 @@ export default function MovieCardItem({ movie, isFavorite }) {
         else addToFavorites(movie);
     }
     return (
-        <StyledCard>
-            <CardImage src={movie.Poster} />
-            <CardBody>
-                <CardTitle>{movie.Title}</CardTitle>
-                <CardText as="div">
-                    <div>{movie.Year}</div>
-                    <div>{movie.Type}</div>
-                </CardText>
-                <CardFooter>
-                    <FavoriteButton customOnClick={() => toggleFavorite()} active={isFavorite} />
-                </CardFooter>
-            </CardBody>
-        </StyledCard>
+        <LinkContainer to={`/details/${movie.imdbID}`}>
+            <StyledCard>
+                <CardImage src={movie.Poster} />
+                <CardBody>
+                    <CardTitle>{movie.Title}</CardTitle>
+                    <CardText as="div">
+                        <div>{movie.Year}</div>
+                        <div>{movie.Type}</div>
+                    </CardText>
+                    <CardFooter>
+                        <FavoriteButton customOnClick={() => toggleFavorite()} active={isFavorite} />
+                    </CardFooter>
+                </CardBody>
+            </StyledCard>
+        </LinkContainer>
     )
 }
 

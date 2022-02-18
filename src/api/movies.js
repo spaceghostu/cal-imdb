@@ -1,4 +1,4 @@
-import { mockResponse } from './mockResponse';
+import { mockGetMovieById, mockSearch } from './mockResponse';
 
 const API_KEY = 'moHSvsXgXRmshqzIK6YfwhVczx3ap1xDEahjsnFJ11Fr40OwpT'
 const BASE_URL = 'https://movie-database-imdb-alternative.p.rapidapi.com/'
@@ -21,7 +21,31 @@ export async function searchMovies(search, page = '1') {
     };
 
     if (process.env.NODE_ENV !== 'production') {
-        return mockResponse()
+        return mockSearch()
+    }
+
+    const res = await fetch(url, options)
+    return res.json()
+}
+
+export async function getMovieById(id) {
+
+    const params = { i: id, r: 'json' }
+    const url = new URL(BASE_URL)
+    for (const key in params) {
+        url.searchParams.append(key, params[key])
+    }
+
+    var options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+            'x-rapidapi-key': API_KEY,
+        }
+    };
+
+    if (process.env.NODE_ENV !== 'production') {
+        return mockGetMovieById()
     }
 
     const res = await fetch(url, options)
