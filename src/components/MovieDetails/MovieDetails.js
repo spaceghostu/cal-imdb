@@ -8,7 +8,7 @@ import GenrePills from './GenrePills';
 import Image from 'react-bootstrap/Image';
 import CreditsList from './CreditsList';
 import { capitalize } from '../../util/util';
-import { Star, StarFill } from 'react-bootstrap-icons';
+import { StarFill } from 'react-bootstrap-icons';
 
 export default function MovieDetails({ movie }) {
     const credits = {

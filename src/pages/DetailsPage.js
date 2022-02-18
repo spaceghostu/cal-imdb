@@ -4,7 +4,6 @@ import { Container, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Center from '../styled-components/Center';
-import Col from 'react-bootstrap/Col';
 import MovieDetails from '../components/MovieDetails/MovieDetails';
 
 export default function DetailsPage() {
