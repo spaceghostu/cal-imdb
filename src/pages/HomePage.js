@@ -6,6 +6,7 @@ import MovieList from '../components/MovieList/MovieList';
 import Paginator from '../components/Paginator';
 import Spinner from 'react-bootstrap/Spinner';
 import Center from '../styled-components/Center';
+import Toolbar from '../components/Toolbar';
 
 export default function HomePage() {
     const searchQuery = useStoreState(state => state.searchQuery)
@@ -27,6 +28,7 @@ export default function HomePage() {
     return (
         <Container>
             {totalResults && <Banner title={bannerTitle} subtitle={bannerSubTitle} />}
+            {totalResults && <Toolbar />}
             <MovieList movies={movies} />
             {totalResults && <Paginator pageCount={Math.ceil(totalResults / 10)} />}
         </Container>
