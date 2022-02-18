@@ -53,12 +53,12 @@ const ItemContainer = styled(ListGroup.Item)`
     align-items: center;
     max-height: 80px;
     padding: 5px;
-    background: #252525;
+    background: #121212;
     color: white;
     border-color: #181818;
     cursor: pointer;
     &:hover {
-        background: #353535;
+        background: #252525;
     }
     img {
         height: 60px;

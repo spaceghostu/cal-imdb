@@ -42,7 +42,6 @@ const CardImage = styled(Card.Img)`
 `
 const CardBody = styled(Card.Body)`
     color: white;
-    ${'' /* background-color: #121212; */}
     display: flex;
     flex-direction: column;
 `

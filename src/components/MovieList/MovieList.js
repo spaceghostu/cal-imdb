@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Col, ListGroup } from 'react-bootstrap';
 import MovieListItem from './MovieListItem';
 import { useStoreState } from 'easy-peasy';
