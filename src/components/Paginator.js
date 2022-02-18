@@ -86,18 +86,18 @@ export default function Paginator({ pageCount }) {
 
 const StyledPaginationItem = styled(Pagination.Item)`
     a {
-        background-color: #000;
-        border: 1px solid #4e4e4e;
-        color: var(--bs-primary);
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.5);
         &:hover {
-            background-color: #1a1a1a !important;
-            border-color: #5d5d5e !important;
-            color: var(--bs-primary);
+            background: none;
+            border-color: rgba(255, 255, 255, 1) !important;
+            color: white;
         }
     }
     &.active .page-link {
-        background-color: var(--bs-primary);
-        color: black;
+        background: none;
+        color: var(--bs-primary);
         border: 1px solid var(--bs-primary);
 
     }
