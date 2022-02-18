@@ -36,6 +36,10 @@ const StyledCard = styled(Card)`
     flex-direction: row;
     padding: 0;
     background-color: #121212;
+    cursor: pointer;
+    &:hover {
+        background: #252525;
+    }
 
 `
 
