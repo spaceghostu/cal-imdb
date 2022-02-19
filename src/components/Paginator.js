@@ -5,8 +5,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useLocalStore, action } from 'easy-peasy';
 import styled from 'styled-components';
+import useWindowSize from '../hooks/useWindowSize';
 
 export default function Paginator({ pageCount }) {
+    const size = useWindowSize()
+    const isXs = size.width < 576
     const pageNumber = useStoreState(state => state.pageNumber)
     const searchQuery = useStoreState(state => state.searchQuery)
     const setSearchParams = useStoreActions(action => action.setSearchParams)
@@ -15,14 +18,16 @@ export default function Paginator({ pageCount }) {
         pageRange: [0, 0],
         showEllipsis: [false, false],
         setPageRange: action((_state, _payload) => {
-            let min = _payload.pageNumber - 4
-            let max = _payload.pageNumber + 5
+            const range = _payload.isXs ? 3 : 5
+            console.log(range)
+            let min = _payload.pageNumber - (range - 1)
+            let max = _payload.pageNumber + range
             if (min < 1) {
                 min = 1
-                max = 10
+                max = (range * 2)
             }
             if (max > _payload.pageCount) {
-                min = _payload.pageCount - 5
+                min = _payload.pageCount - range
                 max = _payload.pageCount
             }
             _state.showEllipsis = [min > 1, max < _payload.pageCount]
@@ -31,8 +36,8 @@ export default function Paginator({ pageCount }) {
     }));
 
     useEffect(() => {
-        actions.setPageRange({ pageNumber, pageCount })
-    }, [actions, pageNumber, pageCount])
+        actions.setPageRange({ pageNumber, pageCount, isXs })
+    }, [actions, pageNumber, pageCount, isXs])
 
     const onPageClick = (pageNumber) => {
         setSearchParams({ searchQuery, pageNumber })
@@ -53,7 +58,7 @@ export default function Paginator({ pageCount }) {
     return (
         <Container className="mt-4">
             <Row>
-                <Pagination className="justify-content-md-center">
+                <Pagination className="justify-content-center">
                     {state.showEllipsis[0] && (
                         <>
                             <StyledPaginationItem
@@ -92,7 +97,8 @@ const StyledPaginationItem = styled(Pagination.Item)`
         &:hover {
             background: none;
             border-color: rgba(255, 255, 255, 1) !important;
-            color: white;
+            color: white;import useWindowSize from '../hooks/useWindowSize';
+
         }
     }
     &.active .page-link {
