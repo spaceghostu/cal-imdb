@@ -42,11 +42,6 @@ export default function SearchPage() {
         </Container>
     )
 
-    if (error) return (
-        <Container>{error}</Container>
-    )
-
-
     return (
         <Container>
             {totalResults && <Banner title={bannerTitle} subtitle={bannerSubTitle} />}
