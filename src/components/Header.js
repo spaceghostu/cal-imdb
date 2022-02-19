@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -10,15 +10,16 @@ import styled from 'styled-components';
 import { Offcanvas } from 'react-bootstrap';
 
 export default function Header() {
+    const [showOffcanvas, setShowOffcanvas] = useState(false);
 
     const nav = (
         <Nav className="justify-content-md-end">
-            <LinkContainer to="/">
+            <LinkContainer to="/" onClick={() => setShowOffcanvas(false)}>
                 <NavLink href="/favorites">
                     Home
                 </NavLink>
             </LinkContainer>
-            <LinkContainer to="/favorites">
+            <LinkContainer to="/favorites" onClick={() => setShowOffcanvas(false)}>
                 <NavLink href="/favorites">
                     Favorites
                 </NavLink>
@@ -41,8 +42,8 @@ export default function Header() {
                         {nav}
                     </Col>
                     <Col className="d-xs-flex d-sm-none">
-                        <Navbar.Toggle className="d-flex ms-auto" />
-                        <Navbar.Offcanvas placement="end">
+                        <Navbar.Toggle className="d-flex ms-auto" onClick={() => setShowOffcanvas(!showOffcanvas)} />
+                        <Navbar.Offcanvas placement="end" show={showOffcanvas}>
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                             </Offcanvas.Header>
