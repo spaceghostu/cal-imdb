@@ -1,8 +1,27 @@
 $theme-colors: (
     "primary": #f5c618,
+    "bg-lightgrey": #1a1a1a,
+    "bg-darkgrey": #121212,
 );
 
 
 $body-color: #fff;
+
+$modal-content-bg: var(--bs-bg-darkgrey);
+$modal-content-color: $body-color;
+
+$navbar-default-bg:           var(--bs-bg-darkgrey);
+
+$btn-focus-box-shadow:        none;
+$btn-active-box-shadow:       none;
+
+$btn-link-color:             white;
+
+$nav-link-color:             white;
+$nav-link-focus-shadow:      none;
+
+$btn-close-color:            white;
+$btn-close-focus-shadow:     none;
+$btn-close-opacity:          1;
 
 @import '~bootstrap/scss/bootstrap.scss';
