@@ -19,7 +19,6 @@ export default function Paginator({ pageCount }) {
         showEllipsis: [false, false],
         setPageRange: action((_state, _payload) => {
             const range = _payload.isXs ? 3 : 5
-            console.log(range)
             let min = _payload.pageNumber - (range - 1)
             let max = _payload.pageNumber + range
             if (min < 1) {
