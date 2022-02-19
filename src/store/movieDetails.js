@@ -18,9 +18,10 @@ const movieDetailsModel = {
         actions.setPending(true)
         actions.setError('')
         try {
-            const movie = await getMovieById(payload.id)
-            actions.set(movie)
-            document.title = movie.Title
+            const res = await getMovieById(payload.id)
+            if (res.Error) throw res.Error
+            actions.set(res)
+            document.title = res.Title
             actions.setPending(false)
         } catch (error) {
             actions.setPending(false)
