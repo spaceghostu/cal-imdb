@@ -22,17 +22,17 @@ export default function DetailsPage() {
         getMovieById(id)
     }, [getMovieById, id])
 
-    if (error) return (
-        <Container>
-            <ErrorMessage message={error} />
-        </Container>
-    )
-
     if (pending) return (
         <Container>
             <Center className="p-5">
                 <Spinner animation="grow" variant="primary" />
             </Center>
+        </Container>
+    )
+
+    if (error) return (
+        <Container>
+            <ErrorMessage message={error} />
         </Container>
     )
 

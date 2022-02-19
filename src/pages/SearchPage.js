@@ -20,6 +20,14 @@ export default function SearchPage() {
     const bannerTitle = `Results for "${searchQuery}"`
     const bannerSubTitle = `${totalResults} results`
 
+    if (pending) return (
+        <Container>
+            <Center className="p-5">
+                <Spinner animation="grow" variant="primary" />
+            </Center>
+        </Container>
+    )
+
     if (error) return (
         <Container>
             <ErrorMessage message={error} />
@@ -31,14 +39,6 @@ export default function SearchPage() {
             <Alert variant="info">
                 No movies to show, please refine your search
             </Alert>
-        </Container>
-    )
-
-    if (pending) return (
-        <Container>
-            <Center className="p-5">
-                <Spinner animation="grow" variant="primary" />
-            </Center>
         </Container>
     )
 
