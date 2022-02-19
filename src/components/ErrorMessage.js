@@ -7,8 +7,6 @@ export default function ErrorMessage({ message }) {
     return (
         <Alert variant="error">
             <Alert.Heading>Error</Alert.Heading>
-            <p>An error occurred</p>
-            <hr />
             <p>{message}</p>
             <hr />
             <div className="d-flex justify-content-end">

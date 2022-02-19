@@ -34,7 +34,7 @@ export default function SearchPage() {
         </Container>
     )
 
-    if (!movies.length) return (
+    if (!movies || !movies.length) return (
         <Container>
             <Alert variant="info">
                 No movies to show, please refine your search

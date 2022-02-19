@@ -20,15 +20,17 @@ const moviesModel = {
     }),
     search: thunk(async (actions, payload) => {
         actions.setPending(true)
+        actions.setError('')
         try {
-            const { Search, totalResults } = await searchMovies(payload.searchQuery, payload.pageNumber)
+            const { Search, totalResults, Error } = await searchMovies(payload.searchQuery, payload.pageNumber)
+            if (Error) throw (Error)
             actions.set(Search)
             document.title = 'Search - ' + payload.searchQuery
             actions.setTotalResults(totalResults)
             actions.setPending(false)
         } catch (error) {
             actions.setPending(false)
-            actions.setError(error)
+            actions.setError(error.message || error)
             console.log(error)
         }
     }),

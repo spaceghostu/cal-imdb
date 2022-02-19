@@ -20,9 +20,9 @@ export async function searchMovies(search, page = '1') {
         }
     };
 
-    if (process.env.NODE_ENV !== 'production') {
-        return mockSearch()
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //     return mockSearch()
+    // }
 
     const res = await fetch(url, options)
     return res.json()
@@ -44,9 +44,9 @@ export async function getMovieById(id) {
         }
     };
 
-    if (process.env.NODE_ENV !== 'production') {
-        return mockGetMovieById()
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //     return mockGetMovieById()
+    // }
 
     const res = await fetch(url, options)
     return res.json()

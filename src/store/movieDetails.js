@@ -16,6 +16,7 @@ const movieDetailsModel = {
     }),
     getMovieById: thunk(async (actions, payload) => {
         actions.setPending(true)
+        actions.setError('')
         try {
             const movie = await getMovieById(payload.id)
             actions.set(movie)
@@ -23,7 +24,7 @@ const movieDetailsModel = {
             actions.setPending(false)
         } catch (error) {
             actions.setPending(false)
-            actions.setError(error)
+            actions.setError(error.message)
             console.log(error)
         }
     }),
