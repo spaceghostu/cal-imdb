@@ -28,6 +28,7 @@ export default function Ratings({ ratings }) {
 
 const StyledContainer = styled(Row)`
     justify-content: flex-end;
+    width: 100%;
 `
 
 const RowNoWrap = styled(Row)`

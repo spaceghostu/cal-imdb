@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export default function GenrePills({ genres }) {
     return (
-        <StyledContainer>
+        <StyledContainer className="justify-content-center justify-content-sm-start">
             {genres.map((genre, index) => (
                 <GenrePill pill key={index}>{genre}</GenrePill>
             ))}

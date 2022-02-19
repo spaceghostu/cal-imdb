@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import DetailsList from './DetailsList'
 
-export default function CreditsList({ credits }) {
+export default function CreditsList({ credits, className }) {
     return (
-        <ul>
+        <ul className={className}>
             {Object.entries(credits).map(([role, names], index) => (
                 <CreditsListItem key={index}>
                     <Role>{role}</Role>
@@ -18,7 +18,8 @@ export default function CreditsList({ credits }) {
 const CreditsListItem = styled.li`
     list-style: none;
     border-top: 1px solid #3a3a3a;
-    height: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     align-items: center;
     &:last-child {

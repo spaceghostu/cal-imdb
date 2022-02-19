@@ -29,10 +29,11 @@ export default function MovieDetails({ movie }) {
     }
     return (
         <>
-            <Header>
+            <Header xs={1}>
                 <DetailsSection>
                     <Title>
-                        <span>{movie.Title}</span>
+                        <h1 className="display-1 d-none d-sm-flex flex-grow-1">{movie.Title}</h1>
+                        <h1 className="d-flex d-sm-none flex-grow-1">{movie.Title}</h1>
                         <FavoriteButton customOnClick={toggleFavorite} active={isFavorite} large />
                     </Title>
                     <DetailsList details={[capitalize(movie.Type), movie.Year, movie.Rated, movie.Runtime]} />
@@ -43,27 +44,29 @@ export default function MovieDetails({ movie }) {
             </Header>
             <SubHeader>
                 <GenrePills genres={movie.Genre.split(',')} />
-                {movie.Awards !== 'N/A' && <Awards>
+                {movie.Awards !== 'N/A' && <Col className="text-center text-sm-right">
                     <StarIcon />
                     {movie.Awards}
-                </Awards>}
+                </Col>}
             </SubHeader>
             <Row>
-                <Poster src={movie.Poster} />
-                <Col>
-                    <Plot>{movie.plot !== 'N/A' ? movie.Plot : `Unfortunately there is no plot information for this ${movie.Type}.`}</Plot>
-                    <CreditsList credits={credits} />
+                <Col sm={4} xs={5}>
+                    <Image src={movie.Poster} className="w-100" />
                 </Col>
+                <Col xs={7}>
+                    <Plot>{movie.plot !== 'N/A' ? movie.Plot : `Unfortunately there is no plot information for this ${movie.Type}.`}</Plot>
+                    <CreditsList credits={credits} className="d-none d-sm-inline-flex flex-column" />
+                </Col>
+                <CreditsList credits={credits} className="d-inline-flex d-sm-none flex-column" />
             </Row>
         </>
     )
 }
 
 
-const Title = styled.h1`
+const Title = styled(Col)`
     color: white;
     font-weight: normal;
-    font-size: 48px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,11 +87,6 @@ const RatingsSection = styled(Col)`
     margin-bottom: auto;
 `
 
-const Poster = styled(Image)`
-    width: 350px;
-    height: auto;
-`
-
 const Plot = styled.p`
     color: white;
     font-size: 18px;
@@ -99,10 +97,6 @@ const SubHeader = styled(Row)`
     justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 20px;
-`
-
-const Awards = styled(Col)`
-    text-align: right;
 `
 
 const StarIcon = styled(StarFill)`
